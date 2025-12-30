@@ -14,7 +14,7 @@
     }
     body {
       max-width: 600px;
-      height: 100vh;
+      height: 99dvh;
       margin: 0 auto;
       padding: 2rem;
       overflow: hidden;
@@ -65,7 +65,7 @@
       margin: 2rem 0 1.5rem;
     }
     .logos img {
-      width: 100px;
+      width: 120px;
       margin: 0;
       transform: none;
       margin-left: 0;
@@ -147,6 +147,30 @@
       text-align: center;
       margin-top: 0;
     }
+    .contact-container {
+      position: relative;
+      width: 100%;
+    }
+    .contact-form {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.5s ease, opacity 0.4s ease, margin 0.4s ease;
+      margin: 0;
+    }
+    .contact-form.active {
+      max-height: 500px;
+      opacity: 1;
+      margin-top: 1rem;
+    }
+    .button.hidden {
+      display: none;
+    }
+    body.form-active {
+      height: auto;
+      min-height: 99dvh;
+      overflow: auto;
+    }
     .cursor-light {
       position: fixed;
       width: 1600px;
@@ -194,6 +218,19 @@
       cursorLight.style.left = e.clientX + 'px';
       cursorLight.style.top = e.clientY + 'px';
     });
+
+    // Contact form reveal
+    const contactBtn = document.querySelector('.button');
+    const contactForm = document.querySelector('.contact-form');
+
+    if (contactBtn && contactForm) {
+      contactBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        contactBtn.classList.add('hidden');
+        contactForm.classList.add('active');
+        document.body.classList.add('form-active');
+      });
+    }
   </script>
 </body>
 </html>

@@ -16,4 +16,9 @@ The racing industry's go-to digital agency. <br> Proud to be working with:
   <a href="https://www.us.ompracing.com/c/racewear-and-accessories/communication-systems/"><img src="/assets/zn-brand-logo-white.png" alt="ZN" style="width: 200px;"></a>
 </div>
 
-<a href="/contact" class="button">Contact us</a>
+<div class="contact-container">
+  <a href="#" class="button">Contact us</a>
+  <div class="contact-form">
+    <script data-letterbirduser="alfredo-949aca92" src="https://letterbird.co/embed/v1.js"></script>
+  </div>
+</div>
