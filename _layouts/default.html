@@ -60,7 +60,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 3rem;
+      gap: 4rem;
       margin: 2rem 0 1.5rem;
     }
     .logos img {
@@ -69,6 +69,10 @@
       transform: none;
       margin-left: 0;
       opacity: 0.3;
+      transition: opacity 0.2s ease;
+    }
+    .logos img:hover {
+      opacity: 1;
     }
     @media screen and (max-width: 768px) {
       body {
@@ -144,8 +148,8 @@
     }
     .cursor-light {
       position: fixed;
-      width: 600px;
-      height: 600px;
+      width: 1600px;
+      height: 1600px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
       pointer-events: none;
