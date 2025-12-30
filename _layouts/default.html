@@ -9,6 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       max-width: 600px;
       min-height: 100vh;
@@ -29,19 +32,36 @@
       color: rgba(255,255,255,1);
     }
     img {
+      max-width: 100%;
+      height: auto;
+    }
+    .main-logo-wrapper {
+      position: relative;
+      display: block;
+      text-align: center;
+      padding: 3rem 0;
+      margin: -3rem 0;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+    }
+    .main-logo {
       width: 720px;
       max-width: calc(100vw - 4rem);
-      height: auto;
-      margin-bottom: 0.5rem;
-      margin-left: 50%;
-      transform: translateX(-50%);
+      margin: 0 auto 0.5rem;
+      display: block;
+      transition: transform 0.15s ease-out, filter 0.15s ease-out;
+      cursor: pointer;
+      filter: brightness(1) drop-shadow(0 0 0 transparent);
+    }
+    .main-logo:hover {
+      transform: scale(1.1);
     }
     .logos {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 3rem;
-      margin: 2rem 0 3rem;
+      margin: 2rem 0 1.5rem;
     }
     .logos img {
       width: 100px;
@@ -51,6 +71,9 @@
       opacity: 0.3;
     }
     @media screen and (max-width: 768px) {
+      body {
+        font-size: 14px;
+      }
       img {
         margin-bottom: 0;
       }
@@ -59,7 +82,7 @@
       }
       .logos {
         gap: 2rem;
-        transform: scale(0.6);
+        transform: scale(0.75);
         margin: 1rem 0;
       }
       .button {
@@ -75,10 +98,10 @@
       opacity: 0.6;
     }
     .button {
-      display: inline-block;
+      display: block;
+      width: 100%;
       min-height: 48px;
       line-height: 48px;
-      padding: 0 2rem;
       text-align: center;
       background-color: rgba(255,255,255,0.1);
       color: rgba(255,255,255,0.7);
@@ -119,9 +142,53 @@
       text-align: center;
       margin-top: 0;
     }
+    .cursor-light {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      transition: left 0.15s ease-out, top 0.15s ease-out, opacity 0.3s ease;
+    }
   </style>
 </head>
 <body>
+  <div class="cursor-light"></div>
   {{ content }}
+  <script>
+    const wrapper = document.querySelector('.main-logo-wrapper');
+    const logo = document.querySelector('.main-logo');
+    if (wrapper && logo) {
+      wrapper.addEventListener('mousemove', (e) => {
+        const rect = wrapper.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = x - rect.width / 2;
+        const centerY = y - rect.height / 2;
+        const rotateX = (centerY / rect.height) * -25;
+        const rotateY = (centerX / rect.width) * 25;
+        // Light effect based on angle
+        const brightness = 1 + (rotateY / 50);
+        const shadowX = rotateY * -0.5;
+        const shadowY = rotateX * 0.5;
+        logo.style.transform = `scale(1.1) perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        logo.style.filter = `brightness(${brightness}) drop-shadow(${shadowX}px ${shadowY}px 15px rgba(255,255,255,0.3))`;
+      });
+      wrapper.addEventListener('mouseleave', () => {
+        logo.style.transform = 'none';
+        logo.style.filter = 'brightness(1) drop-shadow(0 0 0 transparent)';
+      });
+    }
+
+    // Cursor light effect
+    const cursorLight = document.querySelector('.cursor-light');
+    document.addEventListener('mousemove', (e) => {
+      cursorLight.style.left = e.clientX + 'px';
+      cursorLight.style.top = e.clientY + 'px';
+    });
+  </script>
 </body>
 </html>
