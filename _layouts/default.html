@@ -65,20 +65,27 @@
       gap: 4rem;
       margin: 2rem 0 1.5rem;
     }
+    .logos a, .logos img {
+      opacity: 0.6;
+      transition: opacity 0.2s ease;
+    }
     .logos img {
       width: 120px;
       margin: 0;
       transform: none;
       margin-left: 0;
-      opacity: 0.3;
-      transition: opacity 0.2s ease;
+      opacity: inherit;
     }
-    .logos img:hover {
+    .logos a:hover {
       opacity: 1;
     }
     @media screen and (max-width: 768px) {
       body {
         font-size: 14px;
+        overflow: hidden;
+      }
+      body.form-active {
+        overflow: auto;
       }
       img {
         margin-bottom: 0;
@@ -230,6 +237,14 @@
         contactBtn.classList.add('hidden');
         contactForm.classList.add('active');
         document.body.classList.add('form-active');
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && contactForm.classList.contains('active')) {
+          contactForm.classList.remove('active');
+          contactBtn.classList.remove('hidden');
+          document.body.classList.remove('form-active');
+        }
       });
     }
   </script>
