@@ -1,3 +1,8 @@
+---
+status: on
+client: alfredo
+---
+
 # pleymob.com
 
 Pleymob landing page hosted on GitHub Pages.
