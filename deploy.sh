@@ -3,7 +3,7 @@
 # pleymob.com Deploy Script
 # Copies content from Obsidian and pushes to GitHub Pages
 
-OBSIDIAN_PATH="/Users/alfredo/Library/Mobile Documents/iCloud~md~obsidian/Documents/Docs/Projects/pleymob.com"
+OBSIDIAN_PATH="/Users/alfredo/Library/Mobile Documents/iCloud~md~obsidian/Documents/Docs/Web Projects/pleymob.com"
 REPO_PATH="/Users/alfredo/Developer/github.com/gutierrezfredo/pleymob.com"
 
 echo "🚀 Deploying pleymob.com..."
